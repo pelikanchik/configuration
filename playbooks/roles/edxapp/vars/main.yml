@@ -27,7 +27,7 @@ edxapp_generic_auth_config:  &edxapp_generic_auth
   'CONTENTSTORE':
     'ENGINE':  'xmodule.contentstore.mongo.MongoContentStore'
     'OPTIONS':
-      'db':  'edxapp'
+      'db':  'wwc'
       'host': [ 'localhost' ]
       'password':  'password'
       'port': 27017
@@ -37,7 +37,7 @@ edxapp_generic_auth_config:  &edxapp_generic_auth
       'ENGINE': 'xmodule.modulestore.mongo.DraftMongoModuleStore'
       'OPTIONS':  &generic_modulestore_default_options
         'collection':  'modulestore'
-        'db':  'edxapp'
+        'db':  'wwc'
         'default_class':  'xmodule.hidden_module.HiddenDescriptor'
         'fs_root':  '/opt/wwc/data'
         'host': [ 'localhost' ]
@@ -52,7 +52,7 @@ edxapp_generic_auth_config:  &edxapp_generic_auth
   'DATABASES':
     'default':
       'ENGINE': 'django.db.backends.mysql'
-      'NAME': 'edxapp'
+      'NAME': 'pelican'
       'USER': 'root'
       'PASSWORD': ''
       # Provide the name of a host running mysql.
@@ -90,12 +90,12 @@ generic_env_config:  &edxapp_generic_env
     'PREVIEW_LMS_BASE': "{{ c_preview_lms_base }}"
   'WIKI_ENABLED': true
   'SYSLOG_SERVER':  'syslog.a.m.i4x.org'
-  'SITE_NAME':  'example.com'
+  'SITE_NAME':  'pelic.ru'
   'LOG_DIR':  '/mnt/logs/edx'
   'MEDIA_URL':  ''
   'ANALYTICS_SERVER_URL':  ''
   'FEEDBACK_SUBMISSION_EMAIL': ''
-  'TIME_ZONE': 'America/New_York'
+  'TIME_ZONE': 'Europe/Moscow'
   'CACHES':
     'default': &default_generic_cache
       'BACKEND':  'django.core.cache.backends.memcached.MemcachedCache'
@@ -202,7 +202,7 @@ edxapp_theme_source_repo: 'https://github.com/Stanford-Online/edx-theme.git'
 edxapp_theme_version: 'HEAD'
 
 # make this the public URL instead of writable
-lms_source_repo: https://github.com/edx/edx-platform.git
+lms_source_repo: https://github.com/pelikanchik/edx-platform.git
 lms_version: 'release'
 local_requirements_file:  "{{ edx_platform_code_dir }}/requirements/edx/local.txt"
 pre_requirements_file:    "{{ edx_platform_code_dir }}/requirements/edx/pre.txt"

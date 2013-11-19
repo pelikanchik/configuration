@@ -197,6 +197,17 @@
   notify: "edxapp | restart edxapp"
   tags: deploy
 
+-name: edxapp | generate localization files with rake
+  shell: >
+    rake i18n:generate
+    executable=/bin/bash
+    chdir={{ edxapp_code_dir }}
+  sudo_user: "{{ edxapp_user }}"
+  notify:
+  - "edxapp | restart edxapp"
+  environment: "{{ edxapp_environment }}"
+  tags:
+  - deploy
 
 # https://code.launchpad.net/~wligtenberg/django-openid-auth/mysql_fix/+merge/22726
 # This is necessary for when syncdb is run and the django_openid_auth module is installed,

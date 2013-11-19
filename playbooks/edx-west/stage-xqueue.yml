@@ -5,13 +5,19 @@
     secure_dir: ../../../edx-secret/ansible
     local_dir: ../../../edx-secret/ansible/local
   vars_files:
-    - "{{ secure_dir }}/vars/edxapp_stage_vars.yml"
+    - "{{ secure_dir }}/vars/xqueue_stage_vars.yml"
     - "{{ secure_dir }}/vars/users.yml"
     - "{{ secure_dir }}/vars/edxapp_stage_users.yml"
+    - "{{ secure_dir }}/vars/datadog_stage.yml"
   roles:
     - common
-    - nginx
+    - supervisor
+    - role: nginx
+      nginx_sites:
+      - xqueue
     - xqueue
+    - datadog
+    #- splunkforwarder
 
 #- hosts: tag_aws_cloudformation_stack-name_feanilpractice:&tag_group_edxapp
 #  sudo: True

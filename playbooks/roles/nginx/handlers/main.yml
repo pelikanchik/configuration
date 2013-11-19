@@ -1,4 +1,8 @@
 ---
 - name: nginx | restart nginx
   service: name=nginx state=restarted
-  sudo: True
+  tags: deploy
+
+- name: nginx | reload nginx
+  service: name=nginx state=reloaded
+  tags: deploy

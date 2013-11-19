@@ -3,8 +3,8 @@
   sudo: True
   vars_prompt:
     - name: "migrate_db"
-      prompt: "Should this playbook run database migrations? (<Return> for false, anything else for true)"
-      default: false
+      prompt: "Should this playbook run database migrations? (Type 'yes' to run, anything else to skip migrations)"
+      default: "no"
       private: no
   vars:
     not_prod: true
@@ -14,10 +14,18 @@
     - "{{ secure_dir }}/vars/edxapp_stage_vars.yml"
     - "{{ secure_dir }}/vars/users.yml"
     - "{{ secure_dir }}/vars/edxapp_stage_users.yml"
-    #- "{{ secure_dir }}/vars/shib_stage_vars.yml"
+    - "{{ secure_dir }}/vars/shib_stage_vars.yml"
+    - "{{ secure_dir }}/vars/datadog_stage.yml"
   roles:
     - common
-    - nginx
+    - supervisor
+    - role: nginx
+      nginx_sites:
+      - lms
+      - cms
+      - lms-preview
     - edxapp
-    #- apache
-    #- shibboleth
+    - apache
+    - shibboleth
+    - datadog
+    #- splunkforwarder

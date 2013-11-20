@@ -197,7 +197,7 @@
   notify: "edxapp | restart edxapp"
   tags: deploy
 
--name: edxapp | generate localization files with rake
+- name: edxapp | generate localization files with rake
   shell: >
     rake i18n:generate
     executable=/bin/bash

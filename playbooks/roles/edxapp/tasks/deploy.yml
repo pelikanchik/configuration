@@ -197,6 +197,15 @@
   notify: "edxapp | restart edxapp"
   tags: deploy
 
+# Install gettext for develop deployment
+# Should be already installed in production deployment
+- name: edxapp | install gettext for i18n
+  apt: pkg=gettext state=present
+  notify:
+  - "edxapp | restart edxapp"
+  - "edxapp | restart edxapp_workers"
+  tags: deploy
+
 - name: edxapp | generate localization files with rake
   shell: >
     rake i18n:generate

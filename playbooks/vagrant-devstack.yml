@@ -6,7 +6,7 @@
     migrate_db: "yes"
     openid_workaround: True
     devstack: True
-    edx_platform_commit: 'master'
+    edx_platform_commit: 'merged_with_edx_release'
     mongo_enable_journal: False
   vars_files:
     - "group_vars/all"
